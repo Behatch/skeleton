@@ -7,4 +7,4 @@ Feature: Dummy Feature
     Given I am on "http://github.com/gabrielpillet/BehatCH"
     When I follow "features"
     And I follow "dummy.feature"
-    Then I should see "WE HAVE TO GO DEEPER"
+    Then I should see "WE NEED TO GO DEEPER !!"
