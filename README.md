@@ -4,10 +4,10 @@ This repository's purpose is to share our custom Behat Definitions and provide a
 
 ## Usage
 
-1 Clone BehatCH
-2 run "php behat.phar"
-3 ???
-4 Profit !
+1. Clone BehatCH
+2. Run "php behat.phar"
+3. ???
+4. Profit !
 
 ## Credits
 
