@@ -4,7 +4,8 @@ This repository's purpose is to share our custom Behat Definitions and provide a
 
 ## Credits
 
-Please support Mink and Behat and their contributors :
+Please support Behat, Mink, PHPUnit and their contributors :
 
 https://github.com/Behat/Behat
 https://github.com/Behat/Mink
+https://github.com/sebastianbergmann/phpunit
