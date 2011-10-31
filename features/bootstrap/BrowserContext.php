@@ -208,7 +208,7 @@ class BrowserContext extends MinkContext
         }
       }
 
-      if($e == null)
+      if($e === null)
       {
         break;
       }
@@ -250,7 +250,7 @@ class BrowserContext extends MinkContext
   public function theElementShouldBeDisabled($element)
   {
     $node = $this->getSession()->getPage()->find('css', $element);
-    if($node == null)
+    if($node === null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
     }
@@ -269,7 +269,7 @@ class BrowserContext extends MinkContext
   public function theElementShouldBeEnabled($element)
   {
     $node = $this->getSession()->getPage()->find('css', $element);
-    if($node == null)
+    if($node === null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
     }
