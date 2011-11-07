@@ -365,18 +365,6 @@ class BrowserContext extends MinkContext
 
     assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
   }
-  
-  /**
-   * Check that the current element is not present in the DOM
-   * @Then /^the "([^"]*)" element should not be in the DOM$/
-   */
-  public function theElementShouldNotBeInTheDom($element)
-  {
-    $page = $this->getSession()->getPage();
-    $displayedNode = $page->find('css', $element);
-
-    assertTrue($displayedNode === null, sprintf('The element "%s" is present in the DOM', $element));
-  }
      
   /**
    * Click on the specified element
