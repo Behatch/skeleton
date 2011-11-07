@@ -365,4 +365,21 @@ class BrowserContext extends MinkContext
 
     assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
   }
+     
+  /**
+   * Clicks on the specified element
+   * @When /^I click on "([^"]*)"$/
+   */
+  public function iClickOn($selector)
+  {
+    $element = $this->getSession()->getPage()->find('css', $selector);
+    if($displayedNode === null)
+    {
+      throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
+    }
+
+    $element->click(); 
+  }
+    
+ 
 }
