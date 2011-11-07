@@ -379,7 +379,7 @@ class BrowserContext extends MinkContext
   }
      
   /**
-   * 
+   * Click on the specified element
    * @When /^I click on "([^"]*)"$/
    */
   public function iClickOn($selector)
