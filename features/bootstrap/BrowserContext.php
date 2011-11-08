@@ -373,9 +373,9 @@ class BrowserContext extends MinkContext
   public function iClickOn($selector)
   {
     $element = $this->getSession()->getPage()->find('css', $selector);
-    if($displayedNode === null)
+    if($element === null)
     {
-      throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
+      throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $selector));
     }
 
     $element->click(); 
