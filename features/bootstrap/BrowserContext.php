@@ -24,15 +24,6 @@ class BrowserContext extends MinkContext
    */
   private $dateFormat = 'dmYHi';
 
-  /**
-   * Context initialization
-   *
-   * @param array $parameters context parameters (set them up through behat.yml)
-   */
-  public function __construct(array $parameters)
-  {
-    parent::__construct($parameters);
-  }
   
   /**
    * After each scenario, we close the browser
@@ -225,21 +216,6 @@ class BrowserContext extends MinkContext
   public function iWaitUntilISee($text)
   {
     $this->iWaitsSecondsUntilISee($this->timeout, $text);
-  }
-
-  /**
-   * Checks, that there is the given number of elements with specified CSS on page
-   *
-   * @Then /^I should see ([0-9]+) "([^"]*)" elements?$/
-   */
-  public function iShouldSeeNElements($occurences, $element)
-  {
-    $nodes = $this->getSession()->getPage()->findAll('css', $element);
-    $actual = sizeof($nodes);
-    if ($actual !== (int)$occurences)
-    {
-      throw new \Exception(sprintf('%s occurences of the "%s" element found', $actual, $element));
-    }
   }
 
   /**
