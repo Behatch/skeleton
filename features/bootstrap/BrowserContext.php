@@ -24,15 +24,6 @@ class BrowserContext extends MinkContext
    */
   private $dateFormat = 'dmYHi';
 
-  /**
-   * Context initialization
-   *
-   * @param array $parameters context parameters (set them up through behat.yml)
-   */
-  public function __construct(array $parameters)
-  {
-    parent::__construct($parameters);
-  }
   
   /**
    * After each scenario, we close the browser
