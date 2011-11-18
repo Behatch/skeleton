@@ -24,7 +24,16 @@ class BrowserContext extends MinkContext
    */
   private $dateFormat = 'dmYHi';
 
-  
+  /**
+   * Context initialization
+   *
+   * @param array $parameters context parameters (set them up through behat.yml)
+   */
+  public function __construct(array $parameters)
+  {
+    parent::__construct($parameters);
+  }
+
   /**
    * After each scenario, we close the browser
    *
@@ -39,22 +48,22 @@ class BrowserContext extends MinkContext
   /**
    * Opens specified page and log in
    *
-   * @Given /^I am connected with "([^"]*)" on "([^"]*)"$/
+   * @Given /^(?:|I )am connected on "([^"]*)" with "([^"]*)" "([^"]*)"$/
    */
-  public function iAmConnectedWithOn($login, $url)
+  public function iAmConnectedWithOn($url, $login, $password)
   {
     return array(
       new Step\Given(sprintf('I am on "%s"', $url)),
-      new Step\When(sprintf('I fill in "signin_username" with "%s"', $login)),
-      new Step\When(sprintf('I fill in "signin_password" with "%s"', $login.'69')),
-      new Step\Then('I press "connexion"')
+      new Step\When(sprintf('I fill in "utilisateur_login" with "%s"', $login)),
+      new Step\When(sprintf('I fill in "utilisateur_motdepasse" with "%s"', $password)),
+      new Step\Then('I press "OK"')
     );
   }
 
   /**
    * Open url with various parameters
    *
-   * @Given /^I am on url composed by$/
+   * @Given /^(?:|I )am on url composed by$/
    */
   public function iAmOnUrlComposedBy(TableNode $tableNode)
   {
@@ -80,7 +89,7 @@ class BrowserContext extends MinkContext
   /**
    * Clicks on the nth CSS element
    *
-   * @When /^I click on the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" element$/
+   * @When /^(?:|I )click on the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" element$/
    */
   public function iClickOnTheNthElement($index, $element)
   {
@@ -99,7 +108,7 @@ class BrowserContext extends MinkContext
   /**
    * Click on the nth specified link
    *
-  * @When /^I follow the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" link$/
+  * @When /^(?:|I )follow the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" link$/
   */
   public function iFollowTheNthLink($number, $locator)
   {
@@ -120,7 +129,7 @@ class BrowserContext extends MinkContext
   /**
    * Fills in form field with current date
    *
-   * @When /^I fill in "([^"]*)" with the current date$/
+   * @When /^(?:|I )fill in "([^"]*)" with the current date$/
    */
   public function iFillInWithTheCurrentDate($field)
   {
@@ -130,7 +139,7 @@ class BrowserContext extends MinkContext
   /**
    * Fills in form field with current date and strtotime modifier
    *
-   * @When /^I fill in "([^"]*)" with the current date and modifier "([^"]*)"$/
+   * @When /^(?:|I )fill in "([^"]*)" with the current date and modifier "([^"]*)"$/
    */
   public function iFillInWithTheCurentDateAndModifier($field, $modifier)
   {
@@ -140,7 +149,7 @@ class BrowserContext extends MinkContext
   /**
    * Mouse over a CSS element
    *
-   * @When /^I hover "([^"]*)"$/
+   * @When /^(?:|I )hover "([^"]*)"$/
    */
   public function iHoverIShouldSeeIn($element)
   {
@@ -155,7 +164,7 @@ class BrowserContext extends MinkContext
   /**
    * Save value of the field in parameters array
    *
-   * @When /^I save the value of "([^"]*)" in the "([^"]*)" parameter$/
+   * @When /^(?:|I )save the value of "([^"]*)" in the "([^"]*)" parameter$/
    */
   public function iSaveTheValueOfInTheParameter($field, $parameterName)
   {
@@ -172,17 +181,43 @@ class BrowserContext extends MinkContext
   /**
    * Checks, that the page should contains specified text after given timeout
    *
-  * @Then /^I wait "([^"]*)" seconds until I see "([^"]*)"$/
+  * @Then /^(?:|I )wait "([^"]*)" seconds until I see "([^"]*)"$/
   */
   public function iWaitsSecondsUntilISee($timeOut, $text)
+  {
+    $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this->getSession()->getPage());
+  }
+
+  /**
+   * Checks, that the page should contains specified text after timeout
+   * 
+   * @Then /^(?:|I )wait until I see "([^"]*)"$/
+   */
+  public function iWaitUntilISee($text)
+  {
+    $this->iWaitsSecondsUntilISee($this->timeout, $text);
+  }
+
+  /**
+   * Checks, that the element contains specified text after timeout
+   *
+   * @Then /^(?:|I )wait (\d+) seconds until I see "([^"]*)" in the "([^"]*)" element$/
+   */
+  public function iWaitSecondsUntilISeeInTheElement($seconds, $text, $element)
   {
     $expected = str_replace('\\"', '"', $text);
 
     $time = 0;
 
-    while($time < $timeOut)
+    if(is_string($element)) {
+      $node = $this->getSession()->getPage()->find('css', $element);
+    } else {
+      $node = $element;
+    }
+
+    while($time < $seconds)
     {
-      $actual   = $this->getSession()->getPage()->getText();
+      $actual   = $node->getText();
       $e = null;
 
       try
@@ -192,14 +227,14 @@ class BrowserContext extends MinkContext
       }
       catch (AssertException $e)
       {
-        if($time >= $timeOut)
+        if($time >= $seconds)
         {
-          $message = sprintf('The text "%s" was not found anywhere in the text of the current page atfer a %s seconds timeout', $expected, $timeOut);
+          $message = sprintf('The text "%s" was not found anywhere in the text of %s atfer a %s seconds timeout', $expected, $element, $seconds);
           throw new ResponseTextException($message, $this->getSession(), $e);
         }
       }
 
-      if($e === null)
+      if($e == null)
       {
         break;
       }
@@ -209,13 +244,49 @@ class BrowserContext extends MinkContext
   }
 
   /**
-   * Checks, that the page should contains specified text after timeout
-   * 
-   * @Then /^I wait until I see "([^"]*)"$/
+   * Checks, that the element contains specified text after timeout
+   *
+   * @Then /^(?:|I )wait until I see "([^"]*)" in the "([^"]*)" element$/
    */
-  public function iWaitUntilISee($text)
+  public function iWaitUntilISeeInTheElement($text, $element)
   {
-    $this->iWaitsSecondsUntilISee($this->timeout, $text);
+    $this->iWaitSecondsUntilISeeInTheElement($this->timeout, $text, $element);
+  }
+
+  /**
+   * @Then /^(?:|I )Should see (\d+) "([^"]*)" in the (\d+)(?:st|nd|rd|th) "([^"]*)"$/
+   */
+  public function iShouldSeeNElementInTheNthParent($occurences, $element, $index, $parent)
+  {
+    $page = $this->getSession()->getPage();
+
+    $parents = $page->findAll('css', $parent);
+    if(!isset($parents[$index-1]))
+    {
+      throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $parent));
+    }
+
+    $elements = $parents[$index-1]->findAll('css', $element);
+    if(count($elements) !== (int)$occurences)
+    {
+      throw new \Exception(sprintf("%d occurences of the %s element in %s found", count($elements), $element, $parent));
+    }
+  }
+
+
+  /**
+   * Checks, that there is the given number of elements with specified CSS on page
+   *
+   * @Then /^(?:|I )should see ([0-9]+) "([^"]*)" elements?$/
+   */
+  public function iShouldSeeNElements($occurences, $element)
+  {
+    $nodes = $this->getSession()->getPage()->findAll('css', $element);
+    $actual = sizeof($nodes);
+    if ($actual !== (int)$occurences)
+    {
+      throw new \Exception(sprintf('%s occurences of the "%s" element found', $actual, $element));
+    }
   }
 
   /**
@@ -226,7 +297,7 @@ class BrowserContext extends MinkContext
   public function theElementShouldBeDisabled($element)
   {
     $node = $this->getSession()->getPage()->find('css', $element);
-    if($node === null)
+    if($node == null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
     }
@@ -245,7 +316,7 @@ class BrowserContext extends MinkContext
   public function theElementShouldBeEnabled($element)
   {
     $node = $this->getSession()->getPage()->find('css', $element);
-    if($node === null)
+    if($node == null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
     }
@@ -259,7 +330,7 @@ class BrowserContext extends MinkContext
   /**
    * Checks, that page contains specified parameter value
    *
-   * @Then /^I should see the "([^"]*)" parameter$/
+   * @Then /^(?:|I )shoud see the "([^"]*)" parameter$/
    */
   public function iShouldSeeTheParameter($parameter)
   {
@@ -341,21 +412,4 @@ class BrowserContext extends MinkContext
 
     assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
   }
-     
-  /**
-   * Clicks on the specified element
-   * @When /^I click on "([^"]*)"$/
-   */
-  public function iClickOn($selector)
-  {
-    $element = $this->getSession()->getPage()->find('css', $selector);
-    if($element === null)
-    {
-      throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $selector));
-    }
-
-    $element->click(); 
-  }
-    
- 
 }
