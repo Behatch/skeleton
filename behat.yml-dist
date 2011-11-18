@@ -5,3 +5,6 @@ default:
       browser: chrome
       sahi:
         host: localhost
+      filesystem:
+        #root should never end up with /.
+        root: "/home/myuser/Workspace/myproject"

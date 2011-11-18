@@ -28,6 +28,7 @@ class FeatureContext extends BehatContext
   public function __construct(array $parameters)
   {
     $this->useContext('browser', new \BrowserContext($parameters));
+    $this->useContext('filesystem', new \FileSystemContext($parameters));
   }
 
   /**
