@@ -8,3 +8,6 @@ default:
       filesystem:
         #root should never end up with /.
         root: "/home/myuser/workspace/BehatCH"
+      json:
+        #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
+        evaluation_mode: javascript

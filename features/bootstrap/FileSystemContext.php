@@ -1,16 +1,16 @@
 <?php
 
-use Behat\Mink\Behat\Context\MinkContext;
+use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once(__DIR__.'/Bootstrap.php');
+require_once __DIR__.'/Bootstrap.php';
 
 /**
  * This context is intended for file system interractions
  */
-class FileSystemContext extends \Behat\Behat\Context\BehatContext
+class FileSystemContext extends BehatContext
 {
   /**
    *  Root directory

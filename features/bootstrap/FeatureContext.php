@@ -1,5 +1,6 @@
 <?php
 
+use Behat\Mink\Behat\Context\MinkContext;
 use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\TranslatedContextInterface,
     Behat\Behat\Context\BehatContext,
@@ -9,7 +10,8 @@ use Behat\Gherkin\Node\PyStringNode,
 use Behat\Mink\Exception\ResponseTextException;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once(__DIR__.'/Bootstrap.php');
+require_once __DIR__.'/../../mink.phar';
+require_once __DIR__.'/Bootstrap.php';
 
 /**
  * Features context.
@@ -23,8 +25,10 @@ class FeatureContext extends BehatContext
    */
   public function __construct(array $parameters)
   {
+    $this->useContext('mink', new MinkContext($parameters));
     $this->useContext('browser', new \BrowserContext($parameters));
     $this->useContext('filesystem', new \FileSystemContext($parameters));
+    $this->useContext('json', new \JSONContext($parameters));
   }
 
   /**

@@ -1,16 +1,16 @@
 <?php
 
-use Behat\Mink\Behat\Context\MinkContext;
+use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once(__DIR__.'/Bootstrap.php');
+require_once __DIR__.'/Bootstrap.php';
 
 /**
  * This context is intended for Browser interractions
  */
-class BrowserContext extends MinkContext
+class BrowserContext extends BehatContext
 {
   /**
    * Timeout value
@@ -27,6 +27,16 @@ class BrowserContext extends MinkContext
   private $dateFormat = 'dmYHi';
 
   /**
+   * Shortcut for retrieving Mink context
+   *
+   * @return \Behat\Mink\Behat\Context\MinkContext
+   */
+  public function getMinkContext()
+  {
+    return $this->getMainContext()->getSubContext('mink');
+  }
+
+  /**
    * After each scenario, we close the browser
    *
    * @AfterScenario
@@ -34,7 +44,7 @@ class BrowserContext extends MinkContext
    */
   public function closeBrowser()
   {
-    $this->getSession()->stop();
+    $this->getMinkContext()->getSession()->stop();
   }
 
   /**
@@ -85,7 +95,7 @@ class BrowserContext extends MinkContext
    */
   public function iClickOnTheNthElement($index, $element)
   {
-    $nodes = $this->getSession()->getPage()->findAll('css', $element);
+    $nodes = $this->getMinkContext()->getSession()->getPage()->findAll('css', $element);
 
     if (isset($nodes[$index-1]))
     {
@@ -104,10 +114,10 @@ class BrowserContext extends MinkContext
   */
   public function iFollowTheNthLink($number, $locator)
   {
-    $page = $this->getSession()->getPage();
+    $page = $this->getMinkContext()->getSession()->getPage();
 
     $links = $page->findAll('named', array(
-      'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($locator)
+      'link', $this->getMinkContext()->getSession()->getSelectorsHandler()->xpathLiteral($locator)
     ));
 
     if(!isset($links[$number-1]))
@@ -145,7 +155,7 @@ class BrowserContext extends MinkContext
    */
   public function iHoverIShouldSeeIn($element)
   {
-    $node = $this->getSession()->getPage()->find('css', $element);
+    $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     if($node === null)
     {
       throw new \Exception(sprintf('The hovered element "%s" was not found anywhere in the page', $element));
@@ -161,7 +171,7 @@ class BrowserContext extends MinkContext
   public function iSaveTheValueOfInTheParameter($field, $parameterName)
   {
     $field = str_replace('\\"', '"', $field);
-    $node  = $this->getSession()->getPage()->findField($field);
+    $node  = $this->getMinkContext()->getSession()->getPage()->findField($field);
     if($node === null)
     {
       throw new \Exception(sprintf('The field "%s" was not found anywhere in the page', $field));
@@ -177,7 +187,7 @@ class BrowserContext extends MinkContext
   */
   public function iWaitsSecondsUntilISee($timeOut, $text)
   {
-    $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this->getSession()->getPage());
+    $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this->getMinkContext()->getSession()->getPage());
   }
 
   /**
@@ -202,7 +212,7 @@ class BrowserContext extends MinkContext
     $time = 0;
 
     if(is_string($element)) {
-      $node = $this->getSession()->getPage()->find('css', $element);
+      $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     } else {
       $node = $element;
     }
@@ -222,7 +232,7 @@ class BrowserContext extends MinkContext
         if($time >= $seconds)
         {
           $message = sprintf('The text "%s" was not found anywhere in the text of %s atfer a %s seconds timeout', $expected, $element, $seconds);
-          throw new ResponseTextException($message, $this->getSession(), $e);
+          throw new ResponseTextException($message, $this->getMinkContext()->getSession(), $e);
         }
       }
 
@@ -250,7 +260,7 @@ class BrowserContext extends MinkContext
    */
   public function iShouldSeeNElementInTheNthParent($occurences, $element, $index, $parent)
   {
-    $page = $this->getSession()->getPage();
+    $page = $this->getMinkContext()->getSession()->getPage();
 
     $parents = $page->findAll('css', $parent);
     if(!isset($parents[$index-1]))
@@ -273,7 +283,7 @@ class BrowserContext extends MinkContext
    */
   public function iShouldSeeNElements($occurences, $element)
   {
-    $nodes = $this->getSession()->getPage()->findAll('css', $element);
+    $nodes = $this->getMinkContext()->getSession()->getPage()->findAll('css', $element);
     $actual = sizeof($nodes);
     if ($actual !== (int)$occurences)
     {
@@ -288,7 +298,7 @@ class BrowserContext extends MinkContext
    */
   public function theElementShouldBeDisabled($element)
   {
-    $node = $this->getSession()->getPage()->find('css', $element);
+    $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     if($node == null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
@@ -307,7 +317,7 @@ class BrowserContext extends MinkContext
    */
   public function theElementShouldBeEnabled($element)
   {
-    $node = $this->getSession()->getPage()->find('css', $element);
+    $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     if($node == null)
     {
       throw new \Exception(sprintf('There is no "%s" element', $element));
@@ -339,7 +349,7 @@ class BrowserContext extends MinkContext
     $select = str_replace('\\"', '"', $select);
     $option = str_replace('\\"', '"', $option);
 
-    $optionText = $this->getSession()->getPage()->findField($select)->getText();
+    $optionText = $this->getMinkContext()->getSession()->getPage()->findField($select)->getText();
 
     try
     {
@@ -361,7 +371,7 @@ class BrowserContext extends MinkContext
     $select = str_replace('\\"', '"', $select);
     $option = str_replace('\\"', '"', $option);
 
-    $optionText = $this->getSession()->getPage()->findField($select)->getText();
+    $optionText = $this->getMinkContext()->getSession()->getPage()->findField($select)->getText();
 
     try
     {
@@ -380,7 +390,7 @@ class BrowserContext extends MinkContext
    */
   public function theElementShouldBeVisible($element)
   {
-    $displayedNode = $this->getSession()->getPage()->find('css', $element);
+    $displayedNode = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     if($displayedNode === null)
     {
       throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
@@ -396,7 +406,7 @@ class BrowserContext extends MinkContext
    */
   public function theElementShouldNotBeVisible($element)
   {
-    $displayedNode = $this->getSession()->getPage()->find('css', $element);
+    $displayedNode = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
     if($displayedNode === null)
     {
       throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
