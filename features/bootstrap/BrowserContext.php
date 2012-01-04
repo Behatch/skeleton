@@ -63,6 +63,15 @@ class BrowserContext extends BehatContext
   }
 
   /**
+   * @When /^I set basic authentification with "([^"]*)" and "([^"]*)"$/
+   */
+  public function iSetBasicAuthentificationWithAnd($user, $password)
+  {
+    $this->getMinkContext()->getSession()->setBasicAuth($user, $password);
+  }
+
+
+  /**
    * Open url with various parameters
    *
    * @Given /^(?:|I )am on url composed by$/
