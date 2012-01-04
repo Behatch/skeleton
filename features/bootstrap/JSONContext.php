@@ -47,6 +47,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Get JSON from page content
+   *
    * @return mixed
    */
   public function getJson()
@@ -56,6 +58,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Evaluate JSON with given expression
+   *
    * @param $json
    * @param $expression
    */
@@ -80,6 +84,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that the response is correct JSON
+   *
    * @Then /^the response should be in JSON$/
    */
   public function theResponseShouldBeInJson()
@@ -91,6 +97,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that the response is not correct JSON
+   *
    * @Then /^the response should not be in JSON$/
    */
   public function theResponseShouldNotBeInJson()
@@ -102,6 +110,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node is equal to given value
+   *
    * @Then /^the JSON node "([^"]*)" should be equal to "([^"]*)"$/
    */
   public function theJsonNodeShouldBeEqualTo($jsonExpression, $expected)
@@ -119,6 +129,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node contains given value
+   *
    * @Then /^the JSON node "([^"]*)" should contain "([^"]*)"$/
    */
   public function theJsonNodeShouldContain($jsonExpression, $expected)
@@ -136,6 +148,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node does not contain given value
+   *
    * @Then /^the JSON node "([^"]*)" should not contain "([^"]*)"$/
    */
   public function theJsonNodeShouldNotContain($jsonExpression, $expected)
@@ -153,6 +167,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node exists
+   *
    * @Given /^the JSON node "([^"]*)" should exists$/
    */
   public function theJsonNodeShouldExists($jsonExpression)
@@ -175,6 +191,8 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node does not exist
+   *
    * @Given /^the JSON node "([^"]*)" should not exists$/
    */
   public function theJsonNodeShouldNotExists($jsonExpression)
