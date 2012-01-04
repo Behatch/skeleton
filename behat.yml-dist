@@ -1,10 +1,10 @@
 default:
   context:
     parameters:
-      base_url: 'http://localhost'
+      base_url: 'http://localhost/BehatCH'
       browser: chrome
       sahi:
         host: localhost
       filesystem:
         #root should never end up with /.
-        root: "/home/myuser/Workspace/myproject"
+        root: "/home/myuser/workspace/BehatCH"
