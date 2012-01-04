@@ -12,5 +12,5 @@ Feature: Github Feature
   Scenario: I'm gonna check myself a bit
     Given I am on "http://github.com/gabrielpillet/BehatCH"
     When I follow "features"
-    And I follow "dummy.feature"
+    And I follow "github.feature"
     Then I should see "WE NEED TO GO DEEPER !!"
