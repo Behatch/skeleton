@@ -29,6 +29,8 @@ class FeatureContext extends BehatContext
     $this->useContext('browser', new \BrowserContext($parameters));
     $this->useContext('filesystem', new \FileSystemContext($parameters));
     $this->useContext('json', new \JSONContext($parameters));
+    $this->useContext('table', new \TableContext($parameters));
+    $this->useContext('debug', new \DebugContext($parameters));
   }
 
   /**
