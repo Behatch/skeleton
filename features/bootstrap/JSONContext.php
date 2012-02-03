@@ -73,7 +73,14 @@ class JSONContext extends BehatContext
     try
     {
       $result = null;
-      eval(sprintf('$result = $json->%s;', $expression));
+      if(preg_match('/^(?:root)(.*)/', $expression, $r))
+      {
+        eval(sprintf('$result = $json%s;', $r[1]));
+      }
+      else
+      {
+        eval(sprintf('$result = $json->%s;', $expression));
+      }
     }
     catch(\Exception $e)
     {
@@ -125,8 +132,12 @@ class JSONContext extends BehatContext
 
     $actual = $this->evaluateJson($json, $jsonExpression);
 
-    assertEquals($expected, $actual);
+    if($actual != $expected)
+    {
+      throw new \Exception(sprintf("The node value is `%s`", $actual));
+    }
   }
+
 
   /**
    * Checks, that given JSON node has N element(s)
@@ -146,6 +157,7 @@ class JSONContext extends BehatContext
 
     assertSame((integer)$expected, sizeof($actual));
   }
+
 
   /**
    * Checks, that given JSON node contains given value
