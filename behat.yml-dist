@@ -1,4 +1,12 @@
 default:
+  formatter:
+    #name: pretty,UbuntuNotifier
+    parameters:
+      # UbuntuNotifier specific parameters
+      # You can change default icons below
+      #error_icon: "/usr/share/icons/gnome/48x48/status/error.png"
+      #smile_icon: "/usr/share/icons/gnome/48x48/emotes/face-laugh.png"
+      #sad_icon: "/usr/share/icons/gnome/48x48/emotes/face-sad.png"
   context:
     parameters:
       base_url: 'http://localhost/BehatCH'
