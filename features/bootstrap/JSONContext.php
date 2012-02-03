@@ -129,6 +129,25 @@ class JSONContext extends BehatContext
   }
 
   /**
+   * Checks, that given JSON node has N element(s)
+   *
+   * @Then /^the JSON node "([^"]*)" should have (\d+) elements?$/
+   */
+  public function theJsonNodeShouldHaveElements($jsonExpression, $expected)
+  {
+    $json = $this->getJson();
+
+    if(false == $json)
+    {
+      throw new \Exception("The response is not in JSON");
+    }
+
+    $actual = $this->evaluateJson($json, $jsonExpression);
+
+    assertSame((integer)$expected, sizeof($actual));
+  }
+
+  /**
    * Checks, that given JSON node contains given value
    *
    * @Then /^the JSON node "([^"]*)" should contain "([^"]*)"$/
