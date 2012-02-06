@@ -1,7 +1,7 @@
 Feature: Browser Feature
 
   @table
-  Scenario: Testing simple web access
+  Scenario: Testing access to table.html
     Given I am on "table.html"
     Then I should see "You are about to test table."
 
@@ -37,5 +37,3 @@ Feature: Browser Feature
 
     Then the 1st column of the 1st row in the "table" table should contain "Lorem"
     Then the 2nd column of the 1st row in the "table" table should contain "Ipsum"
-
-

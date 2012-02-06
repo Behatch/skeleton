@@ -8,7 +8,7 @@ Feature: Github Feature
     Given I am on "http://github.com/gabrielpillet/BehatCH"
     Then I should see "Behat Custom Helper"
 
-  @github @javascript
+  @github
   Scenario: I'm gonna check myself a bit
     Given I am on "http://github.com/gabrielpillet/BehatCH"
     When I follow "features"

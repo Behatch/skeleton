@@ -1,7 +1,7 @@
 Feature: Browser Feature
 
   @debug
-  Scenario: Testing simple web access
+  Scenario: Testing a break point
     Given I am on "index.html"
 
     Then I put a breakpoint
@@ -9,7 +9,7 @@ Feature: Browser Feature
     Then I put a breakpoint
 
   @debug
-  Scenario: Basic authentication
+  Scenario: Testing a break point
     Given I am on "testing-auth.php"
     Then the response status code should be 401
     And I should see "NONE SHALL PASS"
