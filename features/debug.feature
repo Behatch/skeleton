@@ -38,3 +38,8 @@ Feature: Browser Feature
     When I go to "testing-auth.php"
     Then the response status code should be 401
     And I should see "NONE SHALL PASS"
+
+  @debug @javascript
+  Scenario: Taking a screenshot
+    Given I am on "index.html"
+    And I save a screenshot in "index.png"
