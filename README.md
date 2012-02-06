@@ -37,3 +37,5 @@ Please support Behat, Mink, PHPUnit and their contributors :
 * https://github.com/Behat/Behat
 * https://github.com/Behat/Mink
 * https://github.com/sebastianbergmann/phpunit
+
+Icons included are Gnome Project property : http://iconfinder.com/search/?q=iconset%3Agnome-desktop-icons-png
