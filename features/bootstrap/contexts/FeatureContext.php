@@ -10,8 +10,8 @@ use Behat\Gherkin\Node\PyStringNode,
 use Behat\Mink\Exception\ResponseTextException;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once __DIR__.'/../../mink.phar';
-require_once __DIR__.'/Bootstrap.php';
+require_once __DIR__ . '/../../../mink.phar';
+require_once __DIR__ . '/../Bootstrap.php';
 
 /**
  * Features context.

@@ -5,7 +5,7 @@ use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once __DIR__.'/Bootstrap.php';
+require_once __DIR__ . '/../Bootstrap.php';
 
 /**
  * This context is intended for file system interractions

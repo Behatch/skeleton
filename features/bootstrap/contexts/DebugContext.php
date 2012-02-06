@@ -1,5 +1,8 @@
 <?php
 use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Event\StepEvent;
+
+require_once __DIR__ . '/../Bootstrap.php';
 
 /**
  * Features context.

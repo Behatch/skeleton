@@ -28,10 +28,12 @@ class UbuntuNotifier extends ConsoleFormatter
    */
   protected function getDefaultParameters()
   {
+    $behatchDir = str_replace("/features/bootstrap/notifiers", "",__DIR__);
+
     return array(
-      "error_icon" => "/usr/share/icons/gnome/48x48/status/error.png",
-      "sad_icon" => "/usr/share/icons/gnome/48x48/emotes/face-sad.png",
-      "smile_icon" => "/usr/share/icons/gnome/48x48/emotes/face-laugh.png"
+      "error_icon" => $behatchDir."/images/gnome-error.png",
+      "sad_icon"   => $behatchDir."/images/gnome-sad.png",
+      "smile_icon" => $behatchDir."/images/gnome-smile.png"
     );
   }
 
@@ -40,9 +42,8 @@ class UbuntuNotifier extends ConsoleFormatter
    */
   public static function getSubscribedEvents()
   {
-      $events = array('afterStep', 'afterSuite');
-
-      return array_combine($events, $events);
+    $events = array('afterStep', 'afterSuite');
+    return array_combine($events, $events);
   }
 
   /**
@@ -54,7 +55,7 @@ class UbuntuNotifier extends ConsoleFormatter
    */
   public function afterStep(StepEvent $event)
   {
-    if($event->getResult() == 4)
+    if($event->getResult() == StepEvent::FAILED)
     {
       $message = 'Scenario : '.$event->getStep()->getParent()->getTitle()."\\";
       $message .= "\n".$event->getStep()->getText()."\\";
