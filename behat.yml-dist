@@ -1,12 +1,17 @@
 default:
   formatter:
-    #name: pretty,UbuntuNotifier
+    #name: pretty,UbuntuNotifier,CampfireNotifier
     parameters:
       # UbuntuNotifier specific parameters
-      # You can change default icons below
-      #error_icon: "/usr/share/icons/gnome/48x48/status/error.png"
-      #smile_icon: "/usr/share/icons/gnome/48x48/emotes/face-laugh.png"
-      #sad_icon: "/usr/share/icons/gnome/48x48/emotes/face-sad.png"
+      # You can change icons (default includded in BehatCH dir)
+      #error_icon: "/usr/error.png"
+      #smile_icon: "/usr/face-laugh.png"
+      #sad_icon: "/usr/sad.png"
+
+      #CampfireNotifier specific parameters
+      #campfire_url: "https://foobar.campfirenow.com"
+      #campfire_room: 1337
+      #campfire_token: "123456789101112"
   context:
     parameters:
       base_url: 'http://localhost/BehatCH'
@@ -19,3 +24,6 @@ default:
       json:
         #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
         evaluation_mode: javascript
+      debug:
+        screenshot_dir: "/home/myuser/screenshots"
+        screen_id:      ":99"
