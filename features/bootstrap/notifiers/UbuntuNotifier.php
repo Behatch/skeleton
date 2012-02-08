@@ -1,13 +1,8 @@
 <?php
 
 use Behat\Behat\Formatter\ConsoleFormatter;
-use Behat\Behat\Formatter\FormatManager;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
-
-use Behat\Behat\Event\ScenarioEvent,
-    Behat\Behat\Event\OutlineEvent,
-    Behat\Behat\Event\StepEvent,
+use Behat\Behat\Event\StepEvent,
     Behat\Behat\Event\SuiteEvent;
 
 /**
@@ -15,6 +10,8 @@ use Behat\Behat\Event\ScenarioEvent,
  */
 class UbuntuNotifier extends ConsoleFormatter
 {
+  private $lastTimeError = null;
+
   /**
    * {@inheritdoc}
    */
@@ -33,7 +30,8 @@ class UbuntuNotifier extends ConsoleFormatter
     return array(
       "error_icon" => $behatchDir."/images/gnome-error.png",
       "sad_icon"   => $behatchDir."/images/gnome-sad.png",
-      "smile_icon" => $behatchDir."/images/gnome-smile.png"
+      "smile_icon" => $behatchDir."/images/gnome-smile.png",
+      "spam_timeout" => 10000,
     );
   }
 
@@ -61,7 +59,13 @@ class UbuntuNotifier extends ConsoleFormatter
       $message .= "\n".$event->getStep()->getText()."\\";
       $message .= "\n> ".$event->getException()->getMessage();
 
-      exec(sprintf("notify-send -i %s -t 1000 'Behat step failure' '%s'", $this->parameters->get('error_icon'), str_replace("'", "`", $message)));
+      //spam prevention
+      if(time() - $this->lastTimeError < $this->parameters->get('spam_timeout'))
+      {
+        exec(sprintf("notify-send -i %s -t 1000 'Behat step failure' '%s'", $this->parameters->get('error_icon'), str_replace("'", "`", $message)));
+      }
+
+      $this->lastTimeError = time();
     }
   }
 

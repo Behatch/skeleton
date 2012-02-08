@@ -1,13 +1,8 @@
 <?php
 
 use Behat\Behat\Formatter\ConsoleFormatter;
-use Behat\Behat\Formatter\FormatManager;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
-
-use Behat\Behat\Event\ScenarioEvent,
-    Behat\Behat\Event\OutlineEvent,
-    Behat\Behat\Event\StepEvent,
+use Behat\Behat\Event\StepEvent,
     Behat\Behat\Event\SuiteEvent;
 
 /**
@@ -15,12 +10,14 @@ use Behat\Behat\Event\ScenarioEvent,
  */
 class CampfireNotifier extends ConsoleFormatter
 {
+  private $lastTimeError = null;
+
   /**
    * {@inheritdoc}
    */
   public static function getDescription()
   {
-    return "Warns you in Ubuntu when a scenario is failing";
+    return "Warns you in Campfire when a scenario is failing";
   }
 
   /**
@@ -32,7 +29,7 @@ class CampfireNotifier extends ConsoleFormatter
       "campfire_url" => null,
       "campfire_token" => null,
       "campfire_room" => null,
-      "campfire_first_fail_only" => true
+      "spam_timeout" => 10000
     );
   }
 
@@ -55,14 +52,20 @@ class CampfireNotifier extends ConsoleFormatter
    */
   public function afterStep(StepEvent $event)
   {
-    if($event->getResult() == 4)
+    if($event->getResult() == StepEvent::FAILED)
     {
       $this->send('Behat is failing... :thumbsdown:');
       $message = "\nScenario : ".$event->getStep()->getParent()->getTitle();
       $message .= "\n".$event->getStep()->getText();
       $message .= "\n> ".$event->getException()->getMessage();
 
-      $this->send($message);
+      //spam prevention
+      if(time() - $this->lastTimeError < $this->parameters->get('spam_timeout'))
+      {
+        $this->send($message);
+      }
+
+      $this->lastTimeError = time();
     }
   }
 
