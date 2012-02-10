@@ -102,4 +102,38 @@ class RESTContext extends BehatContext
       throw new \Behat\Mink\Exception\ExpectationException($message, $this->getMinkContext()->getSession(), $e);
     }
   }
+
+  /**
+   * Checks, whether the header name is equal to given text
+   *
+   * @Given /^the header "([^"]*)" should be equal to "([^"]*)"$/
+   */
+  public function theHeaderShouldBeEqualTo($name, $expected)
+  {
+    $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+
+    try
+    {
+      if (!isset($header[$name]))
+      {
+        throw new \Exception(sprintf('The "%s" header do not exist'));
+      }
+      assertEquals($expected, $header[$name]);
+    }
+    catch (AssertException $e)
+    {
+      $message = sprintf('The header "%s" is not equal to "%s"', $name, $expected);
+      throw new \Behat\Mink\Exception\ExpectationException($message, $this->getMinkContext()->getSession(), $e);
+    }
+  }
+
+  /**
+   * Add an header element in a request
+   *
+   * @Given /^I add "([^"]*)" header equal to "([^"]*)"$/
+   */
+  public function iAddHeaderEqualTo($name, $value)
+  {
+    $this->getMinkContext()->getSession()->getDriver()->getClient()->setServerParameter($name, $value);
+  }
 }
