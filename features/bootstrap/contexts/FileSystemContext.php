@@ -46,4 +46,32 @@ class FileSystemContext extends BehatContext
       new Step\When(sprintf('I attach the file "%s" to "%s"', $path, $field))
     );
   }
+
+  /**
+   * Execute a command
+   *
+   * @Given /^(?:|I )execute "([^"]*)"$/
+   */
+  public function iExecute($cmd)
+  {
+    //execution de la commande
+    exec($cmd, $output, $return);
+
+    if($return == 1)
+    {
+      throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $output)));
+    }
+  }
+
+  /**
+   * Execute a command from project root
+   *
+   * @Given /^(?:|I )execute "([^"]*)" from project root$/
+   */
+  public function iExecuteFromProjectRoot($cmd)
+  {
+    $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
+    //execution de la commande
+    $this->iExecute($cmd);
+  }
 }
