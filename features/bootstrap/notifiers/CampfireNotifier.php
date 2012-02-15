@@ -29,7 +29,8 @@ class CampfireNotifier extends ConsoleFormatter
       "campfire_url" => null,
       "campfire_token" => null,
       "campfire_room" => null,
-      "spam_timeout" => 10000
+      "campfire_prefix" => null,
+      "spam_timeout" => 180
     );
   }
 
@@ -54,18 +55,18 @@ class CampfireNotifier extends ConsoleFormatter
   {
     if($event->getResult() == StepEvent::FAILED)
     {
-      $this->send('Behat is failing... :thumbsdown:');
-      $message = "\nScenario : ".$event->getStep()->getParent()->getTitle();
-      $message .= "\n".$event->getStep()->getText();
-      $message .= "\n> ".$event->getException()->getMessage();
-
       //spam prevention
-      if(time() - $this->lastTimeError < $this->parameters->get('spam_timeout'))
+      if($this->lastTimeError == null || time() - $this->lastTimeError > $this->parameters->get('spam_timeout'))
       {
+        $message = $this->parameters->get('campfire_prefix')? '['.$this->parameters->get('campfire_prefix').'] ' : '';
+        $message .= 'Behat is failing...';
+        $message .= "\nScenario : ".$event->getStep()->getParent()->getTitle();
+        $message .= "\n  ".$event->getStep()->getText();
+        $message .= "\n    ".$event->getException()->getMessage();
         $this->send($message);
-      }
 
-      $this->lastTimeError = time();
+        $this->lastTimeError = time();
+      }
     }
   }
 
@@ -80,18 +81,15 @@ class CampfireNotifier extends ConsoleFormatter
   {
     if($event->isCompleted())
     {
+      $prefix = $this->parameters->get('campfire_prefix')? '['.$this->parameters->get('campfire_prefix').'] ' : '';
       $statuses = $event->getLogger()->getScenariosStatuses();
       if($statuses['failed'] > 0)
       {
-        $this->send("Behat suite finished :thumbsdown::shit:");
-        $message  = '';
-        $message .= "\n".$statuses['failed']. ' scenario failed';
-        $message .= "\n".$statuses['passed']. ' scenario ok';
+        $this->send($prefix."Behat suite finished :thumbsdown::shit:");
       }
       else
       {
-        $this->send("Behat suite finished :thumbsup::sparkles:");
-        $message = "\n".$statuses['passed']. ' scenario ok';
+        $this->send($prefix."Behat suite finished :thumbsup::sparkles:");
       }
     }
   }
@@ -120,8 +118,11 @@ class CampfireNotifier extends ConsoleFormatter
       throw new Exception("You must set a campfire token in behat.yml");
     }
 
-    $cmd = sprintf("curl -u %s:X -H 'Content-Type: application/json' -d %s %s/room/%s/speak.xml", $campfireToken, escapeshellarg(json_encode(array('message' => array('body' => $message)))), trim($campfireUrl, '/'), $campfireRoom);
-    print $cmd;
-    exec($cmd);
+    $cmd = sprintf("curl -s -u %s:X -H 'Content-Type: application/json' -d %s %s/room/%s/speak.xml", $campfireToken, escapeshellarg(json_encode(array('message' => array('body' => $message)))), trim($campfireUrl, '/'), $campfireRoom);
+    exec($cmd, $output, $return);
+    if($return != 0)
+    {
+      throw new Exception(sprintf("Unable to send campfire notification with curl :\n%s", implode("\n", $output)));
+    }
   }
 }
