@@ -31,7 +31,7 @@ class UbuntuNotifier extends ConsoleFormatter
       "error_icon" => $behatchDir."/images/gnome-error.png",
       "sad_icon"   => $behatchDir."/images/gnome-sad.png",
       "smile_icon" => $behatchDir."/images/gnome-smile.png",
-      "spam_timeout" => 10000,
+      "spam_timeout" => 180,
     );
   }
 
@@ -60,12 +60,11 @@ class UbuntuNotifier extends ConsoleFormatter
       $message .= "\n> ".$event->getException()->getMessage();
 
       //spam prevention
-      if(time() - $this->lastTimeError < $this->parameters->get('spam_timeout'))
+      if($this->lastTimeError == null || time() - $this->lastTimeError > $this->parameters->get('spam_timeout'))
       {
         exec(sprintf("notify-send -i %s -t 1000 'Behat step failure' '%s'", $this->parameters->get('error_icon'), str_replace("'", "`", $message)));
+        $this->lastTimeError = time();
       }
-
-      $this->lastTimeError = time();
     }
   }
 
