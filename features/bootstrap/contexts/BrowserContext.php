@@ -48,21 +48,6 @@ class BrowserContext extends BehatContext
   }
 
   /**
-   * Opens specified page and log in
-   *
-   * @Given /^(?:|I )am connected on "([^"]*)" with "([^"]*)" "([^"]*)"$/
-   */
-  public function iAmConnectedWithOn($url, $login, $password)
-  {
-    return array(
-      new Step\Given(sprintf('I am on "%s"', $url)),
-      new Step\When(sprintf('I fill in "utilisateur_login" with "%s"', $login)),
-      new Step\When(sprintf('I fill in "utilisateur_motdepasse" with "%s"', $password)),
-      new Step\Then('I press "OK"')
-    );
-  }
-
-  /**
    * Set login / password for next HTTP authentication
    *
    * @When /^I set basic authentication with "([^"]*)" and "([^"]*)"$/
