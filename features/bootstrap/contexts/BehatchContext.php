@@ -1,5 +1,7 @@
 <?php
 
+namespace Behat\Behatch\Behat\Context;
+
 use Behat\Mink\Behat\Context\MinkContext;
 use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\TranslatedContextInterface,
@@ -23,12 +25,12 @@ class BehatchContext extends BehatContext
   public function __construct(array $parameters)
   {
     $this->useContext('mink', new MinkContext($parameters));
-    $this->useContext('browser', new \BrowserContext($parameters));
-    $this->useContext('filesystem', new \FileSystemContext($parameters));
-    $this->useContext('json', new \JSONContext($parameters));
-    $this->useContext('rest', new \RESTContext($parameters));
-    $this->useContext('table', new \TableContext($parameters));
-    $this->useContext('debug', new \DebugContext($parameters));
+    $this->useContext('browser', new BrowserContext($parameters));
+    $this->useContext('filesystem', new FileSystemContext($parameters));
+    $this->useContext('json', new JSONContext($parameters));
+    $this->useContext('rest', new RESTContext($parameters));
+    $this->useContext('table', new TableContext($parameters));
+    $this->useContext('debug', new DebugContext($parameters));
   }
 
   /**

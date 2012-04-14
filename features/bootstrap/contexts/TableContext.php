@@ -1,5 +1,7 @@
 <?php
 
+namespace Behat\Behatch\Behat\Context;
+
 use \Behat\Behat\Context\BehatContext,
     \Behat\Gherkin\Node\TableNode;
 

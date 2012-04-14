@@ -1,6 +1,7 @@
 <?php
 
 use Behat\Behat\Context\BehatContext;
+use Behat\Behatch\Behat\Context\BehatchContext;
 
 class FeatureContext extends BehatContext
 {

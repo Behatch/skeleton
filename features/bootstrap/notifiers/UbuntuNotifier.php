@@ -1,5 +1,7 @@
 <?php
 
+namespace Behat\Behatch\Behat\Notifier;
+
 use Behat\Behat\Formatter\ConsoleFormatter;
 
 use Behat\Behat\Event\StepEvent,
