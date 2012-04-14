@@ -5,8 +5,6 @@ use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-require_once __DIR__ . '/../Bootstrap.php';
-
 /**
  * This context is intended for Browser interractions
  */
@@ -188,7 +186,7 @@ class BrowserContext extends BehatContext
 
   /**
    * Checks, that the page should contains specified text after timeout
-   * 
+   *
    * @Then /^(?:|I )wait until I see "([^"]*)"$/
    */
   public function iWaitUntilISee($text)
