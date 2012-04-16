@@ -5,9 +5,11 @@ This repository's purpose is to share our custom Behat Definitions and provide a
 ## Usage
 
 1. Clone BehatCH
-2. Run "php behat.phar --tags=github" inside BehatCH directory
-3. ???
-4. Profit !
+2. Run "curl -s http://getcomposer.org/installer | php"
+3. Run "php composer.phar install"
+4. Run "./vendor/bin/behat --tags=github" inside BehatCH directory
+5. ???
+6. Profit !
 
 ## Running BehatCH tests
 

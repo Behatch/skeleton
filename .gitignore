@@ -1,2 +1,5 @@
 .idea
 behat.yml
+vendor
+composer.lock
+composer.phar

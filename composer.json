@@ -1,0 +1,27 @@
+{
+    "name": "sanpi/BehatCH",
+    "description": "Standalone Behatch",
+    "keywords": ["BDD", "Behat", "Symfony2", "Context"],
+    "type": "library",
+
+    "require": {
+        "php": ">=5.3.1",
+        "EHER/PHPUnit": "*",
+        "behat/behat": "2.*",
+        "behat/mink": "1.*",
+        "behat/sahi-client": ">=1.0.1,<1.1-dev",
+
+        "fabpot/goutte":                 "*",
+        "behat/sahi-client":             ">=1.0.1,<1.1-dev",
+        "alexandresalome/php-selenium":  "*",
+        "facebook/php-webdriver":        "*"
+    },
+
+    "repositories": {
+        "behat/mink-deps": {
+            "type": "composer",
+            "url":  "behat.org"
+        }
+    }
+}
+
