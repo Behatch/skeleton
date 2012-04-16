@@ -10,6 +10,7 @@
         "behat/behat": "2.*",
         "behat/mink": "1.*",
         "behat/sahi-client": ">=1.0.1,<1.1-dev",
+        "sanpii/behatch-contexts": "*",
 
         "fabpot/goutte":                 "*",
         "behat/sahi-client":             ">=1.0.1,<1.1-dev",
@@ -21,6 +22,10 @@
         "behat/mink-deps": {
             "type": "composer",
             "url":  "behat.org"
+        },
+        "sanpii/behatch-contexts": {
+            "type": "vcs",
+            "url": "http://github.com/sanpii/behatch-contexts"
         }
     }
 }
