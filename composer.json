@@ -17,6 +17,10 @@
         "sanpii/behatch-contexts": "*"
     },
 
+    "config": {
+        "bin-dir": "bin/"
+    },
+
     "repositories": {
         "sanpii/behatch-contexts": {
             "type": "vcs",
