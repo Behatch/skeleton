@@ -1,7 +1,7 @@
 <?php
 
 use Behat\Behat\Context\BehatContext;
-use Behat\Behatch\Behat\Context\BehatchContext;
+use Sanpi\Behatch\Context\BehatchContext;
 
 class FeatureContext extends BehatContext
 {
@@ -10,4 +10,3 @@ class FeatureContext extends BehatContext
     $this->useContext('behatch', new BehatchContext($parameters));
   }
 }
-
