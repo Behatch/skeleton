@@ -1,4 +1,9 @@
 default:
+  extensions:
+    Behat\MinkExtension\Extension:
+      base_url: 'http://localhost:8080'
+      goutte: ~
+      selenium2: ~
   formatter:
     #name: pretty,UbuntuNotifier,CampfireNotifier
     parameters:
@@ -14,10 +19,6 @@ default:
       #campfire_token: "123456789101112"
   context:
     parameters:
-      base_url: 'http://localhost/BehatCH'
-      browser: chrome
-      sahi:
-        host: localhost
       filesystem:
         #root should never end up with /.
         root: "/home/myuser/workspace/BehatCH"
