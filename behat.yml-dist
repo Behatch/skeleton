@@ -4,6 +4,19 @@ default:
       base_url: 'http://localhost:8080'
       goutte: ~
       selenium2: ~
+    Sanpi\Behatch\Extension:
+      browser: ~
+      debug:
+        screenshot_dir: "."
+        screen_id:      ":0"
+      filesystem:
+        #root should never end up with /.
+        root: "."
+      json:
+        #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
+        evaluation_mode: javascript
+      table: ~
+      rest: ~
   formatter:
     #name: pretty,UbuntuNotifier,CampfireNotifier
     parameters:
@@ -17,14 +30,3 @@ default:
       #campfire_url: "https://foobar.campfirenow.com"
       #campfire_room: 1337
       #campfire_token: "123456789101112"
-  context:
-    parameters:
-      filesystem:
-        #root should never end up with /.
-        root: "/home/myuser/workspace/BehatCH"
-      json:
-        #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
-        evaluation_mode: javascript
-      debug:
-        screenshot_dir: "/home/myuser/screenshots"
-        screen_id:      ":99"
