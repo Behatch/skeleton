@@ -1,36 +1,33 @@
 # Behat Custom Helper
 
-This repository's purpose is to share our custom Behat Definitions and provide a quick startup for any Project.
+This repository's purpose is to share our custom Behat Definitions and provide a
+quick startup for any Project.
 
-## Usage
+## Installation
 
-1. Clone BehatCH
-2. Run "curl -s http://getcomposer.org/installer | php"
-3. Run "php composer.phar install"
-4. Run "./vendor/bin/behat --tags=github" inside BehatCH directory
-5. ???
-6. Profit !
+    $ git clone https://github.com/sanpii/BehatCH.git
+    $ cd BehatCH
+    $ curl -s http://getcomposer.org/installer | php
+    $ php composer.phar install
+    $ ./bin/behat --tags=github
 
 ## Running BehatCH tests
 
-BehatCH is auto testing itself providing you follow these steps :
+Download selenium2 server (<http://seleniumhq.org/download/>) and start it:
 
-1. Copy *behat.yml-dist* as *behat.yml*
-2. Setup an Apache Virtual Host so that you can access to *BehatCH/fixtures/www* (ex *http://localhost/BehatCH*), see below for a Virtual Host example.
-3. Update *behat.yml* with BehatCH root directory in *filesystem\root*
-4. Update *behat.yml* with your Virtual Host in *base_url*
-5. Run "php behat.phar"
+    $ java -jar selenium-server-standalone-2.24.1.jar
 
-## Apache Virtual Host example
+Setup a web server on fixtures/www:
 
-```
-Alias /BehatCH /path/to/your/workspace/BehatCH/fixtures/www
+    $ php -S localhost:8080 -t fixtures/www
 
-<Directory "/path/to/your/workspace/BehatCH/fixtures/www">
-    AllowOverride All
-    Allow from All
-</Directory>
-```
+Copy the default configuration file:
+
+    $ cp behat.yml{-dist,}
+
+Run the tests:
+
+    $ ./bin/behat
 
 ## Credits
 
