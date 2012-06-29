@@ -13,18 +13,10 @@
         "behat/mink-selenium2-driver": "*",
         "behat/mink-sahi-driver": "*",
         "behat/mink-zombie-driver": "*",
-
         "sanpii/behatch-contexts": "*"
     },
 
     "config": {
         "bin-dir": "bin/"
-    },
-
-    "repositories": {
-        "sanpii/behatch-contexts": {
-            "type": "vcs",
-            "url": "http://github.com/sanpii/behatch-contexts"
-        }
     }
 }
