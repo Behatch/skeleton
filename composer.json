@@ -1,7 +1,7 @@
 {
     "name": "sanpi/behatch-skeleton",
     "description": "Behatch project skeleton",
-    "keywords": ["BDD", "Behat", "Symfony2", "Context"],
+    "keywords": ["BDD", "Behat", "Mink", "Context", "Skeleton"],
     "type": "library",
 
     "require": {
