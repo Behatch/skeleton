@@ -1,6 +1,6 @@
 {
-    "name": "sanpi/BehatCH",
-    "description": "Standalone Behatch",
+    "name": "sanpi/behatch-skeleton",
+    "description": "Behatch project skeleton",
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
 

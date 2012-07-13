@@ -5,12 +5,12 @@ Feature: Github Feature
 
   @github
   Scenario: Is the github page still up ?
-    Given I am on "http://github.com/gabrielpillet/BehatCH"
+    Given I am on "http://github.com/sanpii/behatch-skeleton"
     Then I should see "Behat Custom Helper"
 
   @github
   Scenario: I'm gonna check myself a bit
-    Given I am on "http://github.com/gabrielpillet/BehatCH"
+    Given I am on "http://github.com/sanpii/behatch-skeleton"
     When I follow "features"
     And I follow "github.feature"
     Then I should see "WE NEED TO GO DEEP !!"
