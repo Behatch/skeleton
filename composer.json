@@ -3,6 +3,7 @@
     "description": "Behatch project skeleton",
     "keywords": ["BDD", "Behat", "Mink", "Context", "Skeleton"],
     "type": "library",
+    "minimum-stability": "dev",
 
     "require": {
         "behat/behat": "2.4.*@stable",
