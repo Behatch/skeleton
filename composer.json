@@ -14,7 +14,7 @@
         "behat/mink-selenium2-driver": "*",
         "behat/mink-sahi-driver": "*",
         "behat/mink-zombie-driver": "*",
-        "sanpii/behatch-contexts": "*"
+        "sanpi/behatch-contexts": "*"
     },
 
     "config": {
