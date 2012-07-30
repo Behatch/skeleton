@@ -6,9 +6,9 @@ use Behat\MinkExtension\Context\MinkContext;
 
 class FeatureContext extends BehatContext
 {
-  public function __construct(array $parameters)
-  {
-    $this->useContext('mink', new MinkContext($parameters));
-    $this->useContext('behatch', new BehatchContext($parameters));
-  }
+    public function __construct(array $parameters)
+    {
+        $this->useContext('mink', new MinkContext($parameters));
+        $this->useContext('behatch', new BehatchContext($parameters));
+    }
 }
