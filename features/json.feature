@@ -8,6 +8,12 @@ Feature: Testing JSONContext
     Then the response should not be in JSON
 
   @json
+  Scenario: Count JSON elements
+    Given I am on "json/imajson.json"
+
+    Then the JSON node "numbers" should have 4 elements
+
+  @json
   Scenario: Checking JSON evaluation
     Given I am on "json/imajson.json"
 
