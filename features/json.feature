@@ -10,7 +10,6 @@ Feature: Testing JSONContext
   @json
   Scenario: Count JSON elements
     Given I am on "json/imajson.json"
-
     Then the JSON node "numbers" should have 4 elements
 
   @json
@@ -29,3 +28,42 @@ Feature: Testing JSONContext
     And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
 
     And the JSON node "bar" should not exists
+
+  @json
+  Scenario: Json validatino
+    Given I am on "json/imajson.json"
+    Then the JSON should be valid according to the schema "fixtures/www/schema.json"
+
+  @json
+  Scenario: Json validatino
+    Given I am on "json/imajson.json"
+    Then the JSON should be valid according to this schema:
+    """
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema",
+      "required":true,
+      "properties": {
+        "foo": {
+          "type": "string",
+          "required":true
+        },
+        "numbers": {
+          "type": "array",
+          "required":true,
+          "one": {
+            "type": "string",
+            "required":true
+          },
+          "two": {
+            "type": "string",
+            "required":true
+          },
+          "three": {
+            "type": "string",
+            "required":true
+          }
+        }
+      }
+    }
+    """
