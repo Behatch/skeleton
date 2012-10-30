@@ -10,7 +10,7 @@ default:
                 debug:
                     screenshot_dir: "."
                     screen_id: ":0"
-               system:
+                system:
                     #root should never end up with /.
                     root: "."
                 json:
