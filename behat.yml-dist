@@ -5,18 +5,19 @@ default:
             goutte: ~
             selenium2: ~
         Sanpi\Behatch\Extension:
-            browser: ~
-            debug:
-                screenshot_dir: "."
-                screen_id: ":0"
-            filesystem:
-                #root should never end up with /.
-                root: "."
-            json:
-                #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
-                evaluation_mode: javascript
-            table: ~
-            rest: ~
+            contexts:
+                browser: ~
+                debug:
+                    screenshot_dir: "."
+                    screen_id: ":0"
+               system:
+                    #root should never end up with /.
+                    root: "."
+                json:
+                    #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
+                    evaluation_mode: javascript
+                table: ~
+                rest: ~
     formatter:
         #name: pretty,UbuntuNotifier,CampfireNotifier
         parameters:
