@@ -1,13 +1,13 @@
 Feature: Browser Feature
 
   @table
-  Scenario: Testing access to table.html
-    Given I am on "table.html"
+  Scenario: Testing access to /table/index.html
+    Given I am on "/table/index.html"
     Then I should see "You are about to test table."
 
   @table
   Scenario: Testing columns
-    Given I am on "table.html"
+    Given I am on "/table/index.html"
 
     Then I should see 2 columns in the "table" table
 
@@ -18,7 +18,7 @@ Feature: Browser Feature
 
   @table
   Scenario: Testing rows
-    Given I am on "table.html"
+    Given I am on "/table/index.html"
 
     Then I should see 2 rows in the "table" table
     Then I should see 2 rows in the 1st "table" table
@@ -33,7 +33,7 @@ Feature: Browser Feature
 
   @table
   Scenario: Testing cell content
-    Given I am on "table.html"
+    Given I am on "/table/index.html"
 
     Then the 1st column of the 1st row in the "table" table should contain "Lorem"
     Then the 2nd column of the 1st row in the "table" table should contain "Ipsum"

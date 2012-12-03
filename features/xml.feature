@@ -1,7 +1,7 @@
 Feature: Testing XmlContext
 
     Background:
-        Given I am on "/testing.xml"
+        Given I am on "/xml/feed.xml"
 
     @xml
     Scenario: Validation with DTD
@@ -9,7 +9,7 @@ Feature: Testing XmlContext
 
     @xml
     Scenario: Validation with XSD file
-        Then the XML feed should be valid according to the XSD "fixtures/www/testing.xsd"
+        Then the XML feed should be valid according to the XSD "fixtures/www/xml/schema.xsd"
 
     @xml
     Scenario: Validation with inline XSD
@@ -31,7 +31,7 @@ Feature: Testing XmlContext
 
     @xml
     Scenario: Validation with relax NG file
-        Then the XML feed should be valid according to the relax NG schema "fixtures/www/testing.ng"
+        Then the XML feed should be valid according to the relax NG schema "fixtures/www/xml/schema.ng"
 
     @xml
     Scenario: Validation with inline relax NG
@@ -58,10 +58,10 @@ Feature: Testing XmlContext
 
     @xml
     Scenario: Atom feed validation
-        Given I am on "/testing.atom"
+        Given I am on "/xml/feed.atom"
         Then the atom feed should be valid
 
     @xml
     Scenario: RSS feed validation
-        Given I am on "/testing.rss"
+        Given I am on "/xml/feed.rss"
         Then the RSS2 feed should be valid
