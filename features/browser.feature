@@ -31,3 +31,8 @@ Feature: Browser Feature
     When I go to "testing-auth.php"
     Then the response status code should be 401
     And I should see "NONE SHALL PASS"
+
+  @browser @javascript
+  Scenario: Wait before seeing
+    Given I am on "/browser/timeout.html"
+    Then I wait 3 seconds until I see "timeout"
