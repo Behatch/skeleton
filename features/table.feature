@@ -1,11 +1,9 @@
 Feature: Browser Feature
 
-  @table
   Scenario: Testing access to /table/index.html
     Given I am on "/table/index.html"
     Then I should see "You are about to test table."
 
-  @table
   Scenario: Testing columns
     Given I am on "/table/index.html"
 
@@ -16,7 +14,6 @@ Feature: Browser Feature
       | Lorem   |
       | Ipsum   |
 
-  @table
   Scenario: Testing rows
     Given I am on "/table/index.html"
 
@@ -31,7 +28,6 @@ Feature: Browser Feature
       | col1   | col2   |
       | Dolor  | Sit    |
 
-  @table
   Scenario: Testing cell content
     Given I am on "/table/index.html"
 

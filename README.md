@@ -9,7 +9,7 @@ quick startup for any Project.
     $ cd behatch-skeleton
     $ curl -s http://getcomposer.org/installer | php
     $ php composer.phar install
-    $ ./bin/behat --tags=github
+    $ ./bin/behat features/github.feature
 
 ## Running BehatCH tests
 

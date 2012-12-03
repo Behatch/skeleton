@@ -3,15 +3,12 @@ Feature: Testing XmlContext
     Background:
         Given I am on "/xml/feed.xml"
 
-    @xml
     Scenario: Validation with DTD
         Then the XML feed should be valid according to its DTD
 
-    @xml
     Scenario: Validation with XSD file
         Then the XML feed should be valid according to the XSD "fixtures/www/xml/schema.xsd"
 
-    @xml
     Scenario: Validation with inline XSD
         Then the XML feed should be valid according to this XSD:
         """
@@ -29,11 +26,9 @@ Feature: Testing XmlContext
         </xs:schema>
         """
 
-    @xml
     Scenario: Validation with relax NG file
         Then the XML feed should be valid according to the relax NG schema "fixtures/www/xml/schema.ng"
 
-    @xml
     Scenario: Validation with inline relax NG
         Then the XML feed should be valid according to this relax NG schema:
         """
@@ -56,12 +51,10 @@ Feature: Testing XmlContext
         </grammar>
         """
 
-    @xml
     Scenario: Atom feed validation
         Given I am on "/xml/feed.atom"
         Then the atom feed should be valid
 
-    @xml
     Scenario: RSS feed validation
         Given I am on "/xml/feed.rss"
         Then the RSS2 feed should be valid

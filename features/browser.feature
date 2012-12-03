@@ -3,13 +3,12 @@ Feature: Browser Feature
   # If this scenari fails
   # It's probably because your web environment is not properly setup
   # You will find the necessery help in README.md
-  @browser @javascript
+  @javascript
   Scenario: Testing simple web access
     Given I am on "/index.html"
     Then I should see "Congratulations, you've correctly set up your apache environment."
 
   # Testing basic authentication
-  @browser
   Scenario: Basic authentication
     Given I am on "/browser/auth.php"
     Then the response status code should be 401
@@ -32,7 +31,7 @@ Feature: Browser Feature
     Then the response status code should be 401
     And I should see "NONE SHALL PASS"
 
-  @browser @javascript
+  @javascript
   Scenario: Wait before seeing
     Given I am on "/browser/timeout.html"
     Then I wait 3 seconds until I see "timeout"

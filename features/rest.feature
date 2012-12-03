@@ -1,13 +1,11 @@
 Feature: Testing RESTContext
 
-  @rest
   Scenario: Testing headers
     When I send a GET request on "rest/index.php"
     Then the header "Content-Type" should be contains "text"
     Then the header "Content-Type" should be equal to "text/html"
     Then the header "xxx" should not exist
 
-  @rest
   Scenario: Testing request methods.
     Given I send a GET request on "/rest/index.php"
     Then I should see "You have sent a GET request. "

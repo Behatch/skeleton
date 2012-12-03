@@ -1,18 +1,15 @@
 Feature: Testing JSONContext
 
-  @json
   Scenario: Am I a JSON ?
     Given I am on "/json/imajson.json"
     Then the response should be in JSON
     When I am on "/json/imnotajson.json"
     Then the response should not be in JSON
 
-  @json
   Scenario: Count JSON elements
     Given I am on "/json/imajson.json"
     Then the JSON node "numbers" should have 4 elements
 
-  @json
   Scenario: Checking JSON evaluation
     Given I am on "/json/imajson.json"
 
@@ -29,12 +26,10 @@ Feature: Testing JSONContext
 
     And the JSON node "bar" should not exists
 
-  @json
   Scenario: Json validatino
     Given I am on "/json/imajson.json"
     Then the JSON should be valid according to the schema "fixtures/www/json/schema.json"
 
-  @json
   Scenario: Json validatino
     Given I am on "/json/imajson.json"
     Then the JSON should be valid according to this schema:
