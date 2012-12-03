@@ -34,5 +34,4 @@ Feature: Testing RESTContext
       """
       This is a body.
       """
-    #Don't know why this is not working. :o
-    #Then I should see "Body : This is a body."
+    Then I should see "Body : This is a body."
