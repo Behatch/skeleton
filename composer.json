@@ -3,12 +3,11 @@
     "description": "Behatch project skeleton",
     "keywords": ["BDD", "Behat", "Mink", "Context", "Skeleton"],
     "type": "library",
-    "minimum-stability": "dev",
 
     "require": {
-        "behat/behat": "2.4.*@stable",
-        "behat/mink": "1.4.*@stable",
-        "behat/mink-extension": "1.0.*@stable",
+        "behat/behat": "*",
+        "behat/mink": "*",
+        "behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
         "behat/mink-selenium-driver": "*",
         "behat/mink-selenium2-driver": "*",
