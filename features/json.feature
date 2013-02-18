@@ -26,11 +26,11 @@ Feature: Testing JSONContext
 
     And the JSON node "bar" should not exists
 
-  Scenario: Json validatino
+  Scenario: Json validation with schema
     Given I am on "/json/imajson.json"
     Then the JSON should be valid according to the schema "fixtures/www/json/schema.json"
 
-  Scenario: Json validatino
+  Scenario: Json validation
     Given I am on "/json/imajson.json"
     Then the JSON should be valid according to this schema:
     """
