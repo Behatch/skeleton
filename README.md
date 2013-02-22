@@ -8,7 +8,7 @@ quick startup for any Project.
     $ git clone https://github.com/sanpii/behatch-skeleton.git
     $ cd behatch-skeleton
     $ curl -s http://getcomposer.org/installer | php
-    $ php composer.phar install
+    $ php composer.phar install --dev
     $ ./bin/behat features/github.feature
 
 ## Running BehatCH tests
