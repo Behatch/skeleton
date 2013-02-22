@@ -2,7 +2,6 @@
     "name": "sanpi/behatch-skeleton",
     "description": "Behatch project skeleton",
     "keywords": ["BDD", "Behat", "Mink", "Context", "Skeleton"],
-    "type": "library",
 
     "require": {
         "behat/mink-goutte-driver": "*",
