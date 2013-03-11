@@ -18,6 +18,7 @@ default:
                     evaluation_mode: javascript
                 table: ~
                 rest: ~
+                xml: ~
     formatter:
         #name: pretty,UbuntuNotifier,CampfireNotifier
         parameters:
