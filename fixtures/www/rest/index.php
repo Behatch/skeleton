@@ -1,4 +1,11 @@
-<?php error_reporting(E_ALL); ?>
+<?php
+
+error_reporting(E_ALL);
+
+header('Date: ' . date('c'));
+header('Expires: ' . date('c', time() + 60));
+
+?>
 
 You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
 

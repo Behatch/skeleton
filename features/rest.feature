@@ -2,9 +2,12 @@ Feature: Testing RESTContext
 
   Scenario: Testing headers
     When I send a GET request on "rest/index.php"
-    Then the header "Content-Type" should be contains "text"
-    Then the header "Content-Type" should be equal to "text/html"
-    Then the header "xxx" should not exist
+    Then print last response headers
+    And the header "Content-Type" should be contains "text"
+    And the header "Content-Type" should be equal to "text/html"
+    And the header "Content-Type" should not contain "text/json"
+    And the header "xxx" should not exist
+    And the response should expire in the future
 
   Scenario: Testing request methods.
     Given I send a GET request on "/rest/index.php"
