@@ -62,3 +62,26 @@ Feature: Testing JSONContext
       }
     }
     """
+
+    Scenario: Json contents validation
+        Given I am on "/json/imajson.json"
+        Then the JSON should be equal to:
+        """
+        {
+            "foo": "bar",
+            "numbers": [
+                "one",
+                "two",
+                "three",
+                {
+                    "complexeshizzle": true,
+                    "so": [
+                        "very",
+                        {
+                            "complicated": "indeed"
+                        }
+                    ]
+                }
+            ]
+        }
+        """
