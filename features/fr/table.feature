@@ -10,7 +10,7 @@ Fonctionnalité:
 
     Alors je devrais voir 2 colonnes dans le tableau "table"
 
-    Alors le schéma des colonnes du tableau "table" devrait correspondre à :
+    Et le schéma des colonnes du tableau "table" devrait correspondre à :
       | columns |
       | Lorem   |
       | Ipsum   |
@@ -19,13 +19,13 @@ Fonctionnalité:
     Étant donné je suis sur "/table/index.html"
 
     Alors je devrais voir 2 lignes dans le tableau "table"
-    Alors je devrais voir 2 lignes dans le 1ier tableau "table"
+    Et je devrais voir 2 lignes dans le 1ier tableau "table"
 
-    Alors les données dans la 1ière ligne du tableau "table" devraient correspondre à :
+    Et les données dans la 1ière ligne du tableau "table" devraient correspondre à :
       | col1   | col2   |
       | Lorem  | Ipsum  |
 
-    Alors les données dans la 2ième ligne du tableau "table" devraient correspondre à :
+    Et les données dans la 2ième ligne du tableau "table" devraient correspondre à :
       | col1   | col2   |
       | Dolor  | Sit    |
 
@@ -33,4 +33,4 @@ Fonctionnalité:
     Étant donné je suis sur "/table/index.html"
 
     Alors la 1ière colonne de la 1ière ligne du tableau "table" devrait contenir "Lorem"
-    Alors la 2nde colonne de la 1ière ligne du tableau "table" devrait contenir "Ipsum"
+    Et la 2nde colonne de la 1ière ligne du tableau "table" devrait contenir "Ipsum"
