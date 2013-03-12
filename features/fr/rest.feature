@@ -39,3 +39,8 @@ Fonctionnalité:
             This is a body.
             """
         Alors je devrais voir "Body : This is a body."
+
+    Scénario:
+        Étant donné j'ajoute l'entête "xxx" égale à "yyy"
+        Quand j'envoie une requête GET sur "/rest/index.php"
+        Alors je devrais voir "HTTP_XXX : yyy"

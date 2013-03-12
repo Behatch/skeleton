@@ -9,6 +9,11 @@ header('Expires: ' . date('c', time() + 60));
 
 You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
 
+<?php print sizeof($_SERVER); ?> header(s) received.
+<?php foreach($_SERVER as $key => $value): ?>
+  <br /><?php print $key ?> : <?php print $value; ?>
+<?php endforeach; ?>
+
 <?php if(sizeof($_REQUEST) == 0): ?>
   <br />No parameter received.
 <?php else: ?>

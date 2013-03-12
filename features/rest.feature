@@ -38,3 +38,8 @@ Feature: Testing RESTContext
       This is a body.
       """
     Then I should see "Body : This is a body."
+
+  Scenario: Add header
+    Given I add "xxx" header equal to "yyy"
+    When I send a GET request on "/rest/index.php"
+    Then I should see "HTTP_XXX : yyy"
