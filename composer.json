@@ -2,6 +2,7 @@
     "name": "sanpi/behatch-skeleton",
     "description": "Behatch project skeleton",
     "keywords": ["BDD", "Behat", "Mink", "Context", "Skeleton"],
+    "license": "beerware",
 
     "require-dev": {
         "behat/mink-goutte-driver": "*",
