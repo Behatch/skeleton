@@ -17,15 +17,11 @@ Download selenium2 server (<http://seleniumhq.org/download/>) and start it:
 
     $ java -jar selenium-server-standalone-2.24.1.jar
 
-Setup a web server on fixtures/www:
-
-    $ php -S localhost:8080 -t fixtures/www
-
 Copy the default configuration file:
 
     $ cp behat.yml{-dist,}
 
-Run the tests:
+Write tests and run:
 
     $ ./bin/behat
 
@@ -36,5 +32,3 @@ Please support Behat, Mink, PHPUnit and their contributors :
 * https://github.com/Behat/Behat
 * https://github.com/Behat/Mink
 * https://github.com/sebastianbergmann/phpunit
-
-Icons included are Gnome Project property : http://iconfinder.com/search/?q=iconset%3Agnome-desktop-icons-png

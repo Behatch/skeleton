@@ -1,4 +1,0 @@
-<!ELEMENT page  (title, content, comment?)>
-<!ELEMENT title (#PCDATA)>
-<!ELEMENT content (#PCDATA)>
-<!ELEMENT comment (#PCDATA)>
