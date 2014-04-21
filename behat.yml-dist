@@ -1,21 +1,21 @@
 default:
+    suites:
+        default:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - behatch:browser
+                - behatch:debug:
+                    screenshotDir: "."
+                    screen_id: ":99.0"
+                - behatch:json:
+                    evaluationMode: javascript
+                - behatch:rest
+                - behatch:system
+                - behatch:table
+                - behatch:xml
     extensions:
         Behat\MinkExtension\Extension:
             base_url: 'http://localhost:8080'
             goutte: ~
             selenium2: ~
-        Sanpi\Behatch\Extension:
-            contexts:
-                browser: ~
-                debug:
-                    screenshot_dir: "."
-                    screen_id: ":99.0"
-                system:
-                    #root should never end up with /.
-                    root: "."
-                json:
-                    #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
-                    evaluation_mode: javascript
-                table: ~
-                rest: ~
-                xml: ~
+        Sanpi\Behatch\Extension: ~
