@@ -6,7 +6,6 @@ default:
                 - behatch:browser
                 - behatch:debug:
                     screenshotDir: "."
-                    screen_id: ":99.0"
                 - behatch:json:
                     evaluationMode: javascript
                 - behatch:rest
