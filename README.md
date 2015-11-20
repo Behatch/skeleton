@@ -1,14 +1,14 @@
 # Behat Custom Helper
 
-[![Build Status](https://travis-ci.org/sanpii/behatch-skeleton.png)](https://travis-ci.org/sanpii/behatch-skeleton)
+[![Build Status](https://travis-ci.org/Behatch/skeleton.png)](https://travis-ci.org/Behatch/skeleton)
 
 This repository's purpose is to share our custom Behat Definitions and provide a
 quick startup for any Project.
 
 ## Installation
 
-    $ git clone https://github.com/sanpii/behatch-skeleton.git
-    $ cd behatch-skeleton
+    $ git clone https://github.com/Behatch/skeleton.git
+    $ cd skeleton
     $ curl -s http://getcomposer.org/installer | php
     $ php composer.phar install --dev
     $ ./bin/behat features/github.feature
